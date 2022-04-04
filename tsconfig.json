@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    // Allow using the latest ECMAScript proposed features and libraries.
+    // https://github.com/tc39/proposals
+    "lib": ["DOM", "ESNext"],
+    "skipLibCheck": true,
+    "baseUrl": "src",
+    "paths": {
+      "@slices/*": ["store/slices/*"],
+      "@screens/*": ["screens/*"]
+    }
+  }
+}

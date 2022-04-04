@@ -1,0 +1,12 @@
+{
+  "name": "mobile-research",
+  "displayName": "mobile-research",
+  "expo": {
+    "name": "mobile-research",
+    "slug": "mobile-research",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
