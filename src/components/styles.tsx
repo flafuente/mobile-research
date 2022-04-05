@@ -6,4 +6,9 @@ export default StyleSheet.create({
       marginLeft:10,
       padding: 20,
     },
+    inputText: {
+      height: 40,
+      margin: 12,
+      borderWidth: 1,
+    },
   });

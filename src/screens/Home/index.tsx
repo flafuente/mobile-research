@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text } from "react-native";
+import { useSelector } from "react-redux";
 import { useGetCandidatesListQuery } from '@api/candidates'
-import { Candidate } from '@slices/candidates'
+import { Candidate, selectCandidateByName } from '@slices/candidates'
 import CustomList from '@components/CustomList'
+import Filter from "@components/Filter";
 import { Props } from '@navigation/index'
+import type { RootState } from '@store/index'
 
 function HomeScreen({ navigation }: Props) {
   const { data, error, isLoading } = useGetCandidatesListQuery('');
   const goToDetails = (candidate:Candidate) => navigation.navigate('Detail', {...candidate});
+  const [name, setName] = useState('');
+  const onChangeFilter = (value:string) => {
+    setName(value);
+  }
+  const filterActive = name.length > 1;
+  const filtered = useSelector((state:RootState) => selectCandidateByName(state, name));
   return (
     <View>
-      <CustomList goToDetails={goToDetails} list={data} />
+      <Filter onChangeText={onChangeFilter} value={name} />
+      <CustomList goToDetails={goToDetails} list={filterActive ? filtered: data} />
     </View>
   );
 }

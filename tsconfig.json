@@ -11,6 +11,7 @@
       "@navigation/*": ["navigation/*"],
       "@api/*": ["api/*"],
       "@slices/*": ["store/slices/*"],
+      "@store/*": ["store/*"],
       "@screens/*": ["screens/*"]
     }
   }
