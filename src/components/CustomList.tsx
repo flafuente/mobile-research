@@ -5,14 +5,14 @@ import styles from "./styles";
 
 type goToDetailsFunction = (item: Candidate) => void;
 
-type screenProps = {
+type Props = {
   list: Array<Candidate> | undefined;
   goToDetails: goToDetailsFunction;
 };
 type rowProps = {
   item: Candidate;
 };
-function HomeScreen( { list, goToDetails }:screenProps ) {
+function HomeScreen( { list, goToDetails }:Props ) {
 
   //Move to component
   const renderItem = ({ item }:rowProps) => {
