@@ -1,7 +1,10 @@
 import React from "react";
 import { FlatList, RefreshControl, TouchableWithoutFeedback, View } from "react-native";
-import CustomRow from "../CustomRow";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/dist/query";
+import { SerializedError } from "@reduxjs/toolkit";
 import { Candidate } from '@slices/candidates'
+import EmptyScreen from "@components/EmptyScreen";
+import CustomRow from "../CustomRow";
 import styles from "./styles";
 
 type goToDetailsFunction = (item: Candidate) => void;
@@ -12,11 +15,12 @@ type Props = {
   goToDetails: goToDetailsFunction;
   onRefresh: onRefreshFunction;
   isFetching: boolean;
+  error: FetchBaseQueryError | SerializedError | undefined;
 };
 type rowProps = {
   item: Candidate;
 };
-function HomeScreen( { list, goToDetails, onRefresh, isFetching }:Props ) {
+function HomeScreen( { list, goToDetails, onRefresh, isFetching, error }:Props ) {
   const separator = () => <View style={styles.separator} />
   const renderItem = ({ item }:rowProps) => {
     const pressAction = () => goToDetails(item);
@@ -32,7 +36,8 @@ function HomeScreen( { list, goToDetails, onRefresh, isFetching }:Props ) {
         </View>
       </TouchableWithoutFeedback>
   };
-  return (
+  return (!isFetching && (!list || list.length === 0)) ?
+    <EmptyScreen onRefresh={onRefresh} error={error} /> :
     <FlatList
       data={list}
       renderItem={renderItem}
@@ -45,8 +50,7 @@ function HomeScreen( { list, goToDetails, onRefresh, isFetching }:Props ) {
             onRefresh={onRefresh}
         />
       }
-    />
-  );
+    />;
 }
 
 export default HomeScreen;

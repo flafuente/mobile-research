@@ -23,6 +23,7 @@ function HomeScreen({ navigation }: Props) {
     <View style={styles.container}>
       <Filter onChangeText={onChangeFilter} value={name} />
       <CustomList
+        error={error}
         isFetching={isFetching || isLoading}
         onRefresh={onRefresh}
         goToDetails={goToDetails}
