@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, FlatList, TouchableWithoutFeedback } from "react-native";
+import { FlatList, TouchableWithoutFeedback, View } from "react-native";
+import CustomRow from "../CustomRow";
 import { Candidate } from '@slices/candidates'
 import styles from "./styles";
 
@@ -13,20 +14,27 @@ type rowProps = {
   item: Candidate;
 };
 function HomeScreen( { list, goToDetails }:Props ) {
-
-  //Move to component
+  const separator = () => <View style={styles.separator} />
   const renderItem = ({ item }:rowProps) => {
     const pressAction = () => goToDetails(item);
     return <TouchableWithoutFeedback onPress={pressAction}>
-        <View style={styles.containerBody}>
-          <Text>{`${item.name}`}</Text>
-          <Text>{`${item.application_date}`}</Text>
+        <View>
+            <CustomRow
+              name={item.name}
+              position={item.position_applied}
+              status={item.status}
+              experience={item.year_of_experience}
+              application={item.application_date}
+            />
         </View>
-      </TouchableWithoutFeedback>};
+      </TouchableWithoutFeedback>
+  };
   return (
     <FlatList
       data={list}
       renderItem={renderItem}
+      contentContainerStyle={styles.listPadding}
+      ItemSeparatorComponent={separator}
       keyExtractor={item => `${item.email}-${item.id}`}
     />
   );

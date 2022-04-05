@@ -12,6 +12,7 @@
       "@api/*": ["api/*"],
       "@slices/*": ["store/slices/*"],
       "@store/*": ["store/*"],
+      "@utils/*": ["utils/*"],
       "@screens/*": ["screens/*"]
     }
   }

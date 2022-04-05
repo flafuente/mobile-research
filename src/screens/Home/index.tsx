@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import { useSelector } from "react-redux";
 import { useGetCandidatesListQuery } from '@api/candidates'
 import { Candidate, selectCandidateByName } from '@slices/candidates'
@@ -7,6 +7,7 @@ import CustomList from '@components/CustomList'
 import Filter from "@components/Filter";
 import { Props } from '@navigation/index'
 import type { RootState } from '@store/index'
+import styles from "./styles";
 
 function HomeScreen({ navigation }: Props) {
   const { data, error, isLoading } = useGetCandidatesListQuery('');
@@ -18,7 +19,7 @@ function HomeScreen({ navigation }: Props) {
   const filterActive = name.length > 1;
   const filtered = useSelector((state:RootState) => selectCandidateByName(state, name));
   return (
-    <View>
+    <View style={styles.container}>
       <Filter onChangeText={onChangeFilter} value={name} />
       <CustomList goToDetails={goToDetails} list={filterActive ? filtered: data} />
     </View>
