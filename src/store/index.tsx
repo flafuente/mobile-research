@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import logger from 'redux-logger'
-import { candidates } from '@api/candidates'
+import { candidatesApi } from '@api/candidates'
 
 const store = configureStore({
   reducer: {
-   [candidates.reducerPath]: candidates.reducer,
+   [candidatesApi.reducerPath]: candidatesApi.reducer,
   },
   middleware: (getDefaultMiddleware) => [
     ...getDefaultMiddleware({}),
-    candidates.middleware,
+    candidatesApi.middleware,
     logger,
   ],
 })

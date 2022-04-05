@@ -5,7 +5,7 @@ type CandidateResponse = {
   data: Array<Candidate>;
 };
 
-export const candidates = createApi({
+export const candidatesApi = createApi({
   reducerPath: 'candidates',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://personio-fe-test.herokuapp.com/api/v1/' }),
   endpoints: (builder) => ({
@@ -16,4 +16,4 @@ export const candidates = createApi({
   }),
 })
 
-export const { useGetCandidatesListQuery } = candidates
+export const { useGetCandidatesListQuery } = candidatesApi
