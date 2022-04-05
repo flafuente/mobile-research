@@ -11,9 +11,11 @@ export const candidatesApi = createApi({
   endpoints: (builder) => ({
     getCandidatesList: builder.query({
       query: () => `candidates`,
-      transformResponse: (response:CandidateResponse) => response?.data,
+      transformResponse: (response:CandidateResponse) => response?.data.sort((a:Candidate, b:Candidate) => {
+        return b.application_date.localeCompare(a.application_date); 
+      }),
     }),
   }),
-})
+});
 
-export const { useGetCandidatesListQuery } = candidatesApi
+export const { useGetCandidatesListQuery } = candidatesApi;
