@@ -1,13 +1,17 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react'
 import { Candidate } from '@slices/candidates';
 
 type CandidateResponse = {
   data: Array<Candidate>;
 };
 
+const staggeredBaseQuery = retry(fetchBaseQuery({ baseUrl: 'http://personio-fe-test.herokuapp.com/api/v1/' }), {
+  maxRetries: 5,
+});
+
 export const candidatesApi = createApi({
   reducerPath: 'candidates',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://personio-fe-test.herokuapp.com/api/v1/' }),
+  baseQuery: staggeredBaseQuery,
   endpoints: (builder) => ({
     getCandidatesList: builder.query({
       query: () => `candidates`,
