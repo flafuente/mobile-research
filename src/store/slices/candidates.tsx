@@ -5,6 +5,6 @@ export type Candidate = {
   email: string
   name: string
   position_applied: string
-  status: string
+  status: 'waiting' | 'rejected' | 'approved'
   year_of_experience: number
 }
