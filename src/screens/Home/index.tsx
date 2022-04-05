@@ -10,8 +10,9 @@ import type { RootState } from '@store/index'
 import styles from "./styles";
 
 function HomeScreen({ navigation }: Props) {
-  const { data, error, isLoading } = useGetCandidatesListQuery('');
+  const { data, error, isLoading, isFetching, refetch } = useGetCandidatesListQuery('');
   const goToDetails = (candidate:Candidate) => navigation.navigate('Detail', {...candidate});
+  const onRefresh = () => refetch();
   const [name, setName] = useState('');
   const onChangeFilter = (value:string) => {
     setName(value);
@@ -21,7 +22,12 @@ function HomeScreen({ navigation }: Props) {
   return (
     <View style={styles.container}>
       <Filter onChangeText={onChangeFilter} value={name} />
-      <CustomList goToDetails={goToDetails} list={filterActive ? filtered: data} />
+      <CustomList
+        isFetching={isFetching || isLoading}
+        onRefresh={onRefresh}
+        goToDetails={goToDetails}
+        list={filterActive ? filtered: data}
+      />
     </View>
   );
 }

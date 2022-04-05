@@ -1,19 +1,22 @@
 import React from "react";
-import { FlatList, TouchableWithoutFeedback, View } from "react-native";
+import { FlatList, RefreshControl, TouchableWithoutFeedback, View } from "react-native";
 import CustomRow from "../CustomRow";
 import { Candidate } from '@slices/candidates'
 import styles from "./styles";
 
 type goToDetailsFunction = (item: Candidate) => void;
+type onRefreshFunction = () => void;
 
 type Props = {
   list: Array<Candidate> | undefined;
   goToDetails: goToDetailsFunction;
+  onRefresh: onRefreshFunction;
+  isFetching: boolean;
 };
 type rowProps = {
   item: Candidate;
 };
-function HomeScreen( { list, goToDetails }:Props ) {
+function HomeScreen( { list, goToDetails, onRefresh, isFetching }:Props ) {
   const separator = () => <View style={styles.separator} />
   const renderItem = ({ item }:rowProps) => {
     const pressAction = () => goToDetails(item);
@@ -36,6 +39,12 @@ function HomeScreen( { list, goToDetails }:Props ) {
       contentContainerStyle={styles.listPadding}
       ItemSeparatorComponent={separator}
       keyExtractor={item => `${item.email}-${item.id}`}
+      refreshControl={
+        <RefreshControl
+            refreshing={isFetching}
+            onRefresh={onRefresh}
+        />
+      }
     />
   );
 }
