@@ -8,6 +8,7 @@
     "baseUrl": "src",
     "paths": {
       "@components/*": ["components/*"],
+      "@navigation/*": ["navigation/*"],
       "@api/*": ["api/*"],
       "@slices/*": ["store/slices/*"],
       "@screens/*": ["screens/*"]
