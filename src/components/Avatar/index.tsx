@@ -7,21 +7,22 @@ type Props = {
   backgroundColor: string;
   fullName: string;
   experience: number;
+  displayBig?: boolean;
 };
 
-function Avatar( { backgroundColor, fullName, experience }:Props ) {
+function Avatar( { backgroundColor, fullName, experience, displayBig }:Props ) {
   const letters = initials(fullName)
   return (
     <View style={styles.avatarContainer}>
-      <View style={[styles.avatar, {backgroundColor}]}>
+      <View style={[displayBig ? styles.avatarBig : styles.avatar, {backgroundColor}]}>
         <Text
-        style={styles.textAvatar}>
+        style={[styles.textAvatar, { fontSize: (displayBig) ? 150 / 3.14 : 50 / 3.14, }]}>
           {letters}
         </Text>   
       </View>
-      <View style={styles.pillContainer}>
+      {!displayBig && <View style={styles.pillContainer}>
         <Text style={styles.pillText}>{`${experience}`}</Text>
-      </View>
+      </View>}
     </View>
   );
 }
