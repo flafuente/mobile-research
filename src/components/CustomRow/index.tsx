@@ -22,12 +22,10 @@ function CustomRow( { name, position, status, application, experience }:Props ) 
     />
     <View style={styles.mainText}>
       <View style={styles.titleContainer}>
-        <Text style={styles.primaryText}>{`${name}`}</Text>
+        <Text  numberOfLines={1} ellipsizeMode='tail' style={styles.primaryText}>{`${name}`}</Text>
         <Text style={styles.altText}>{`${position}`}</Text>
       </View>
-
-        <Text style={[styles.altText, styles.dateText]}>{`${moment(application).format("MMMM Do")}`}</Text>
-
+      <Text style={[styles.altText, styles.dateText]}>{moment(application).format("MMMM Do").toString()}</Text>
     </View>
   </View>
 };

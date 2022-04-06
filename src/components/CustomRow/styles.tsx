@@ -18,6 +18,7 @@ export default StyleSheet.create({
   },
   primaryText: {
     color: colors.primaryText,
+    flexShrink: 1,
     fontSize: 18,
     fontWeight:'500',
   },
