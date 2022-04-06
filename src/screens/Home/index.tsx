@@ -5,6 +5,7 @@ import { useGetCandidatesListQuery } from '@api/candidates'
 import { Candidate, selectCandidateByName } from '@slices/candidates'
 import CustomList from '@components/CustomList'
 import Filter from "@components/Filter";
+import { useDebounce } from '@utils/index'
 import { Props } from '@navigation/index'
 import type { RootState } from '@store/index'
 import styles from "./styles";
@@ -14,11 +15,12 @@ function HomeScreen({ navigation }: Props) {
   const goToDetails = (candidate:Candidate) => navigation.navigate('Detail', {...candidate});
   const onRefresh = () => refetch();
   const [name, setName] = useState('');
+  const debouncedSearchTerm = useDebounce(name, 600);
   const onChangeFilter = (value:string) => {
     setName(value);
   }
-  const filterActive = name.length > 1;
-  const filtered = useSelector((state:RootState) => selectCandidateByName(state, name));
+  const filterActive = debouncedSearchTerm.length > 1;
+  const filtered = useSelector((state:RootState) => selectCandidateByName(state, debouncedSearchTerm));
   return (
     <View style={styles.container}>
       <Filter onChangeText={onChangeFilter} value={name} />
