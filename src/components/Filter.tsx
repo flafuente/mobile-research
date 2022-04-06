@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     color: colors.accented,
     borderRadius: 30,
     padding: 10,
+    fontSize:17,
   },
 });
 
