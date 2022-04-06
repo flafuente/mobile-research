@@ -23,7 +23,7 @@ function Detail({route}: Props) {
       <DetailRow description={'Experience'} value={`${year_of_experience} year${(year_of_experience) !== 1 ? 's': '' }`}/>
       <DetailRow description={'Application'} value={moment(application_date).format("MMMM Do YYYY").toString()}/>
       <TouchableWithoutFeedback onPress={sendEmail}>
-        <View>
+        <View style={styles.touchableView}>
           <DetailRow description={'Email'} value={email}/>
         </View>
       </TouchableWithoutFeedback>
