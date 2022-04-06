@@ -22,8 +22,11 @@ export const selectAllCandidates = createSelector(
   list => list?.data ?? emptyList
 );
 
-export const selectCandidateByName = createSelector(
+const containsName = (c:Candidate, value: string) => c.name.toLowerCase().includes(value.toLowerCase())
+const containsPosition = (c:Candidate, value: string) => c.position_applied.toLowerCase().includes(value.toLowerCase())
+
+export const selectCandidatesByNameOrPosition = createSelector(
   selectAllCandidates,
-  (_state: RootState, name:string) => name,
-  (allCandidates:Array<Candidate>, name: string) => allCandidates.filter((c:Candidate) => c.name.toLowerCase().includes(name.toLowerCase()))
+  (_state: RootState, value:string) => value,
+  (allCandidates:Array<Candidate>, value: string) => allCandidates.filter((c:Candidate) => containsName(c, value) || containsPosition(c, value))
 )
