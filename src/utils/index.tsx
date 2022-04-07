@@ -1,4 +1,15 @@
 import { useEffect, useState } from "react";
+import { createServer } from "miragejs";
+import candidatesMock from "./candidates.mock.json";
+export const mockApi = () => {
+  return createServer({
+    routes() {
+      this.get("http://personio-fe-test.herokuapp.com/api/v1/candidates", () => {
+        return candidatesMock;
+      })
+    },
+  });
+}
 
 export const useDebounce = (value: string, delay: number): string => {
   const [debouncedValue, setDebouncedValue] = useState(value);
