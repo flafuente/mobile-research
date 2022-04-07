@@ -11,7 +11,7 @@ function DetailRow( { description, value }:Props ) {
   return (
     <View style={styles.container}>
         <Text style={styles.description}>{description}</Text>
-        <Text numberOfLines={1} ellipsizeMode='tail' style={styles.value}>{value}</Text>
+        <Text testID={`detail-${description.toLocaleLowerCase()}`} numberOfLines={1} ellipsizeMode='tail' style={styles.value}>{value}</Text>
     </View>
   );
 }

@@ -27,6 +27,7 @@ function HomeScreen( { list, goToDetails, onRefresh, isFetching, error }:Props )
     return <TouchableWithoutFeedback onPress={pressAction}>
         <View>
             <CustomRow
+              id={item.id}
               name={item.name}
               position={item.position_applied}
               status={item.status}
@@ -39,6 +40,7 @@ function HomeScreen( { list, goToDetails, onRefresh, isFetching, error }:Props )
   return (!isFetching && (!list || list.length === 0)) ?
     <EmptyScreen onRefresh={onRefresh} error={error} /> :
     <FlatList
+      testID="candidate-list"
       data={list}
       renderItem={renderItem}
       contentContainerStyle={styles.listPadding}

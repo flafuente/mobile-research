@@ -14,7 +14,7 @@ type Props = {
 
 function EmptyScreen( { error, onRefresh }:Props ) {
   return (
-    <View>
+    <View testID="empty-screen">
         <Text style={styles.title}>No results Found!</Text>
         <Image
           style={styles.image}

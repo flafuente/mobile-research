@@ -11,7 +11,7 @@ function Detail({route}: Props) {
   const sendEmail = () => Linking.openURL('mailto:support@example.com?subject=Role&body=Dear');
   const {name, email, application_date, birth_date, position_applied, year_of_experience, status} = route?.params;
   return (
-    <View style={styles.container}>
+    <View testID="detail-screen" style={styles.container}>
       <Avatar
         displayBig
         experience={year_of_experience}

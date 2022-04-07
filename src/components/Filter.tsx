@@ -23,6 +23,7 @@ type Props = {
 function Filter( { onChangeText, value }:Props ) {
   return (
     <TextInput
+      testID="home-filter"
       style={styles.inputText}
       placeholder="Type to filter name"
       placeholderTextColor={colors.accented}

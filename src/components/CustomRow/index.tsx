@@ -6,15 +6,16 @@ import { colorResolver, statusColorResolver } from "@utils/index";
 import styles from "./styles";
 
 type Props = {
+  id: number;
   name: string;
   position: string;
   status: keyof colorResolver;
   application: string;
   experience: number;
 };
-function CustomRow( { name, position, status, application, experience }:Props ) {
+function CustomRow( { id, name, position, status, application, experience }:Props ) {
 
-  return <View style={styles.containerRow}>
+  return <View testID={`candidate-${id}`} style={styles.containerRow}>
     <Avatar
       experience={experience}
       fullName={name}

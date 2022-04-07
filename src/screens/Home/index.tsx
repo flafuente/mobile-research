@@ -22,7 +22,7 @@ function HomeScreen({ navigation }: Props) {
   const filterActive = debouncedSearchTerm.length > 1;
   const filtered = useSelector((state:RootState) => selectCandidatesByNameOrPosition(state, debouncedSearchTerm));
   return (
-    <View style={styles.container}>
+    <View testID="home-screen" style={styles.container}>
       <Filter onChangeText={onChangeFilter} value={term} />
       <CustomList
         error={error}
