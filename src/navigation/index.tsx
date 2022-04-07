@@ -13,7 +13,8 @@ export type Props = StackScreenProps<RootStackParamList, 'Detail'>;
 
 const Stack = createStackNavigator();
 const header = ({ route }: Props) => ({
-  title: route.params?.name ?? ''
+  title: route.params?.name ?? '',
+  headerBackTitle: 'Back',
 }) 
 const MainStack = () => {
   return (
